@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <title>Communities and Crime</title>
+</head>
+
+<body>
+    <nav>
+        <h4>Communities and Crime</h4>
+        <ul>
+            <li><a href="/main">Main</a></li>
+            <li><a href="/saved">Saved</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-4">
+
+                <div class="card">
+                    <div class="avatar-ctn">
+                        <img src="/avatar.jpg" class="avatar" alt="user profile picture" />
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Welcome {{user.name}}!</h5>
+                        <p class="card-text">Please fill out all of the input fields and click predict to get the
+                            result. The values ​​entered represent a percentage and must be in the range 0 to 100.</p>
+                    </div>
+                </div>
+                {{#if error}}<h4 class="alert alert-danger mt-4">{{error}}</h4>{{/if}}
+                <h4 class="alert saved alert-success">Saved! Refreshing in 3 seconds</h4>
+            </div>
+            <div class="col-8">
+                <form action="/auth/predict" , method="POST">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="pctKidsBornNevrMarrInput" class="form-label">Kids born to never
+                                    married</label>
+                                <input type="number" class="form-control" id="pctKidsBornNevrMarrInput"
+                                    name="pctKidsBornNevrMarrInput" value="{{pctKidsBornNevrMarrInput}}" {{#if
+                                    pctKidsBornNevrMarrInput}}readonly{{/if}}>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="pctKids2ParInput" class="form-label">Kids in family housing with two
+                                    parents</label>
+                                <input type="number" class="form-control" id="pctKids2ParInput" name="pctKids2ParInput"
+                                    value="{{pctKids2ParInput}}" {{#if pctKids2ParInput}}readonly{{/if}}>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="pctWhiteInput" class="form-label">Population that is caucasian</label>
+                                <input type="number" class="form-control" id="pctWhiteInput" name="pctWhiteInput"
+                                    value="{{pctWhiteInput}}" {{#if pctWhiteInput}}readonly{{/if}}>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="pctBlackInput" class="form-label">Population that is african
+                                    american</label>
+                                <input type="number" class="form-control" id="pctBlackInput" name="pctBlackInput"
+                                    value="{{pctBlackInput}}" {{#if pctBlackInput}}readonly{{/if}}>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="pctWdivInput" class="form-label">Households with investment / rent
+                                    income</label>
+                                <input type="number" class="form-control" id="pctWdivInput" name="pctWdivInput"
+                                    value="{{pctWdivInput}}" {{#if pctWdivInput}}readonly{{/if}}>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="pctPubAsstInput" class="form-label">Households with public assistance
+                                    income</label>
+                                <input type="number" class="form-control" id="pctPubAsstInput" name="pctPubAsstInput"
+                                    value="{{pctPubAsstInput}}" {{#if pctPubAsstInput}}readonly{{/if}}>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="pctAllDivorcInput" class="form-label">Population who are divorced</label>
+                                <input type="number" class="form-control" id="pctAllDivorcInput"
+                                    name="pctAllDivorcInput" value="{{pctAllDivorcInput}}" {{#if
+                                    pctAllDivorcInput}}readonly{{/if}}>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="pctPovertyInput" class="form-label">People under the poverty level</label>
+                                <input type="number" class="form-control" id="pctPovertyInput" name="pctPovertyInput"
+                                    value="{{pctPovertyInput}}" {{#if pctPovertyInput}}readonly{{/if}}>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="pctVacantBoardedInput" class="form-label">Vacant housing that is boarded
+                                    up</label>
+                                <input type="number" class="form-control" id="pctVacantBoardedInput"
+                                    name="pctVacantBoardedInput" value="{{pctVacantBoardedInput}}" {{#if
+                                    pctVacantBoardedInput}}readonly{{/if}}>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="pctUnemployInput" class="form-label">People 16 and over, in the labor force,
+                                    and
+                                    unemployed</label>
+                                <input type="number" class="form-control" id="pctUnemployInput" name="pctUnemployInput"
+                                    value="{{pctUnemployInput}}" {{#if pctUnemployInput}}readonly{{/if}}>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-3">
+                            <label for="territory" class="form-label">Territory</label>
+                            <input class="form-control" type="text" id="territory" name="territory"
+                                value="{{territory}}" {{#if territory}}readonly{{/if}}>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-1">
+                            <button type="submit" name="button" value="predict" onClick="spinnerInfo()"
+                                class="btn predictbtn btn-primary {{#if result}}disabled{{/if}}">Predict</button>
+                        </div>
+                        &emsp; &ensp;
+                        <div class="col-1">
+                            <div class="spinner-border" role="status">
+                            </div>
+                        </div>
+                    </div>
+
+                    <br></br>
+
+                    <div class="row">
+                        <div class="mb-3">
+                            <label for="result" class="form-label">Total number of violent crimes per 100K
+                                popuation</label>
+                            <input class="form-control" type="number" id="result" name="result" value="{{result}}"
+                                readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <a href="/main" class="btn resetbtn btn-primary {{#if result}}{{else}}disabled{{/if}}"
+                                onClick="resetClick()">Reset</a>
+                        </div>
+                        <div class="col-1">
+                            <button type="submit" name="button" value="save" onClick="savedInfo()"
+                                class="btn savebtn btn-primary {{#if result}}{{else}}disabled{{/if}}">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer text-center">
+        <img src="/ferit-logo.png" class="feritlogo" alt="logo">
+        <img src="/azure_ml_logo.png" class="azurelogo" alt="logo">
+    </div>
+
+    <script src="/main.js"></script>
+
+</body>
+
+</html>
